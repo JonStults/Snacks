@@ -1,6 +1,6 @@
 console.log('polls controller');
 var mongoose = require('mongoose')
-var polls = mongoose.model('Polls');
+var users = mongoose.model('User');
 module.exports = {
   create: function (req, res){
     console.log('hello');
