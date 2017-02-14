@@ -1,0 +1,22 @@
+{
+  "name": "Snacks",
+  "description": "Building Snack'n",
+  "main": "server.js",
+  "authors": [
+    "Alex Ambrose",
+    "Jon Stults"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ambrosealex/git-demo",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.0"
+  }
+}
