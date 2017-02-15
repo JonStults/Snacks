@@ -1,5 +1,5 @@
 <div ng-controller="registerController">
-  <form name='myForm' ng-submit='createUser(newUser)'>
+  <form name='myForm' ng-submit='callCreateUser(newUser)'>
     <p>First Name: <input type="text" ng-model='newUser.first_name' required="true"></p>
     <p>Last Name: <input type="text" ng-model='newUser.last_name' required="true"></p>
     <p>Email: <input type="text" ng-model='newUser.email' required="true"></p>
@@ -11,7 +11,6 @@
                   <option value="female">Female</option>
                 </select>
     </p>
-    <hr>
     <input type="submit" value="Register">
   </form>
 </div>
