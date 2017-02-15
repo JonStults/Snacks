@@ -26,5 +26,5 @@ app.factory('snackFactory', ['$http', function($http) {
         errors.message = '';
       };
     };
-      return factory;
+    return factory;
 }]);
