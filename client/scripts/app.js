@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute", "ngCookies", "ngMessages"]);
 app.config(function($routeProvider){
     $routeProvider.when('/register', {
         templateUrl: "partials/register.html"

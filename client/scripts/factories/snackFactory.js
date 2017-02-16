@@ -1,30 +1,53 @@
 console.log('Snack Factory');
 app.factory('snackFactory', ['$http', function($http) {
       var factory = {};
-      var errors = {message: ''};
-      factory.currentUser = '';
-      factory.createUser = function(newUser, finishedCreating){
-        var first_name = newUser.first_name;
-        var last_name = newUser.last_name;
-        if(!newUser) {
-          errors.message = "Please fill out all fields";
-          return false;
-        }
-        if(first_name.length < 2){
-          errors.message = 'Question must be at least 2 characters long';
-          return false;
-        }
-        else if(last_name.length < 2){
-          errors.message = 'Question must be at least 2 characters long';
-          return false;
-        }
-        else {
-          $http.post('/users/create', newUser).then(function(response){
-              console.log(response);
-              finishedCreating(response.data.user);
-        });
-        errors.message = '';
-      };
-    };
+      factory.login = function(loginUser, callback) {
+  			$http.post('/users/login', loginUser).then(
+  				function success(response) {
+
+  					// if login was NOT successful
+  					if (typeof(response.data.errors) != 'undefined') {
+  						callback(false, response.data.errors);
+  					}
+  					else { // else login was successful
+  						callback(true, response.data);
+  					}
+          },
+  				function error(response) {
+  					console.log('[Login: ERROR] login failed: ' + response);
+  				}
+  			);
+  		}
+
+      factory.register = function(newUser, callback) {
+			$http.post('/users/register', newUser).then(
+				function success(response) {
+
+					if (typeof(response.data.errors) != 'undefined') {
+						// we have an errors (invalid form)
+						callback(false, response.data.errors);
+					}
+					else {
+						// form was valid & successfully registered!
+						callback(true, response.data);
+					}
+
+				},
+  				function error(response) {
+  					console.log('[Register: ERROR] registration failed: ' + response);
+  				}
+  			);
+  		}
+
+      factory.show = function(user_id, callback) {
+        $http.get('/users/' + user_id).then(
+          function success(response) {
+            callback(response.data);
+          },
+          function error(response) {
+            console.log('[Show: ERROR] failed to retrieve users information: ' + response);
+          }
+        );
+      }
     return factory;
 }]);

@@ -1,10 +1,14 @@
 <div ng-controller = "loginController">
-    <h2>Login</h2>
-    <form class="" ng-submit="callLoginUser(user)">
-        <p>Email: <input type="text" ng-model="user"></p>
-        <p>Password: <input type="text" ng-model="user"></p>
-        <hr>
-        <input type="submit" name="loginBtn" value="Login">
+    <h2 class="form-signin-heading">Login</h2>
+    <form class="form-signin" ng-submit="callLoginUser(user)">
+      <div ng-if="loginError">
+        <div class="alert alert-danger fade in registerErrors">
+          <strong>Error:</strong> {{ loginError }}
+        </div>
+      </div>
+      <p>Email: <input class="form-control" type="text" ng-model="user.email" required="true"></p>
+      <p>Password: <input class="form-control" type="password" ng-model="user.password" required="true"></p>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>
 
